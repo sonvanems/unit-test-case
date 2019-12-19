@@ -1,0 +1,45 @@
+<div class="container">
+    <h2>{{title}}</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" formControlName="firstName"
+                [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+            <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                <div *ngIf="f.firstName.errors.required">First Name is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" formControlName="lastName"
+                [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+            <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="zipcode">Zipcode</label>
+            <input type="text" class="form-control" formControlName="zipcode"
+                [ngClass]="{ 'is-invalid': submitted && f.zipcode.errors }" />
+                
+            <div *ngIf="submitted && f.zipcode.errors" class="invalid-feedback">                    
+                <div *ngIf="f.zipcode.errors.required">Zipcode is required</div>
+                <div *ngIf="f.zipcode.errors.minlength || f.zipcode.errors.maxlength">Zipcode minimun length should be 5 charactor</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="text" class="form-control" formControlName="phone"
+                [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
+            <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                <div *ngIf="f.phone.errors.required">Phone number is required</div>
+                <div *ngIf="f.phone.errors.minlength || f.phone.errors.maxlength">Phone number should be 10 charactors</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Register</button>
+            <a class="btn btn-link">Cancel</a>
+        </div>
+    </form>
+
+</div>
